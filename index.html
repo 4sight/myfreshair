@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<script type="text/javascript" src='script.js'></script>
-	<title>FreshAir</title>
-</head>
-<body>
-<p>Want to turn off your air conditioning and let in some fresh air? Enter your location and your thermostat's set temperature (your comfortable indoor temperature) and FreshAir will estimate the best times to open your windows based on your local weather forecast.</p>
+	<head>
+		<script type="text/javascript" src='script.js'></script>
+		<title>FreshAir</title>
+	</head>
+	<body>
+	<p>Want to turn off your air conditioning and let in some fresh air? Enter your location and your thermostat's set temperature (your comfortable indoor temperature) and FreshAir will estimate what the best time will be to open your windows based on your local weather forecast.</p>
 
-<p>Unlike your local forecast's heat index, FreshAir tells you when the temperature will feel comfortable inside your home with the windows open based on relative humidity without factoring in sunlight or wind chill.</p>
+	<p>Unlike your local forecast's heat index, FreshAir tells you when the temperature will feel comfortable inside your home with the windows open based on relative humidity without factoring in sunlight or wind chill.</p>
 
-<p>Enter city or ZIP code: <input type='javascript' name='location'></input></p>
-</body>
+	<p>Enter city or ZIP code:
+		<form name='queryForm' action='' method='GET'>
+			<input type='javascript' name='query' value=''>
+			<input type='button' name='button' value='Submit' onClick='userInput(this.form)'>
+		</form>
+	</p>
+	</body>
 </html>
