@@ -1,5 +1,5 @@
 function userInput(form){
-	var userLocation = form.query.value;
+	var userLocation = form.locationQuery.value;
 	var zipQuery = /^\d/;
 	var isNumber = zipQuery.test(userLocation);
 	if (isNumber == true && userLocation.length != 5) {alert('Please enter a location name or a five-digit zip code');}
@@ -9,6 +9,8 @@ function userInput(form){
 	    if (req.readyState === 4) {
 			data = req.responseText;
 	        console.log(data);
+	        console.log('The current temperature in ' + userLocation + ' is ' + data.weather + ' °F.');
+	        console.log(data['coord']);
 	    }
 	};
 	req.setRequestHeader('Accept', 'application/json');
