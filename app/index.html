@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type='text/javascript' src='scripts/main.js'></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+		<script type='text/javascript' src='js/main.js'></script>
 		<title>FreshAir</title>
 	</head>
 	<body>
@@ -10,14 +12,14 @@
 
 		<p>Unlike your local forecast's heat index, FreshAir tells you when the temperature will feel comfortable inside your home with the windows open based on relative humidity without factoring in sunlight or wind chill.</p>
 
-		<form name='queryForm' action='' method='GET'>
+		<!-- <form name='queryForm' action='' method='GET'> -->
 			Enter city or ZIP code:
-			<p><input type='javascript' name='locationQuery' value=''></p>
-			<p>Enter your indoor temperature:</p>
-			<p><input type='javascript' name='temperatureQuery' value=''></p>
+			<p><input type='text' id='locationQuery' value=''></p>
+			<!-- <p>Enter your indoor temperature:</p>
+			<p><input type='javascript' name='temperatureQuery' value=''></p> -->
 			<p>
-			<input type='button' name='button' value='Submit' onClick='userInput(this.form)'>
+			<button id='submitButton' onclick='gettingJSON()'>Submit</button>
 			</p>
-		</form>
+		<!-- </form> -->
 	</body>
 </html>

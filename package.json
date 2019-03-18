@@ -14,5 +14,8 @@
     "gulp-useref": "^3.1.6",
     "gulp-util": "latest",
     "run-sequence": "^2.2.1"
+  },
+  "dependencies": {
+    "gulp-open": "^3.0.1"
   }
 }
