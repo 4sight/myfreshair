@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var open = require('gulp-open');
 var sass = require('gulp-sass');
 var browserSync = require('browser-sync');
 var useref = require('gulp-useref');
@@ -88,8 +89,17 @@ gulp.task('clean:dist', function() {
 // Build Sequences
 // ---------------
 
+gulp.task('browser', function(){
+  var options = {
+    uri: 'localhost:9000',
+    app: 'firefox'
+  };
+  gulp.src(__filename)
+  .pipe(open(options));
+});
+
 gulp.task('default', function(callback) {
-  runSequence(['sass', 'browserSync'], 'watch',
+  runSequence(['sass', 'browserSync'], 'browser', 'watch',
     callback
   )
 })
