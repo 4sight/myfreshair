@@ -26,7 +26,7 @@ gulp.task('browserSync', function() {
     server: {
       baseDir: 'app'
     },
-      browser: 'Chrome'
+      browser: 'Firefox'
   })
 })
 
