@@ -12,14 +12,14 @@
 
 		<p>Unlike your local forecast's heat index, FreshAir tells you when the temperature will feel comfortable inside your home with the windows open based on relative humidity without factoring in sunlight or wind chill.</p>
 
-		<!-- <form name='queryForm' action='' method='GET'> -->
-			Enter city or ZIP code:
-			<p><input type='text' id='locationQuery' value=''></p>
-			<!-- <p>Enter your indoor temperature:</p>
-			<p><input type='javascript' name='temperatureQuery' value=''></p> -->
+		<p>Enter city or ZIP code in the U.S.:</p>
+		<form action='javascript:gettingJSON();'>
+			<input type='text' id='locationQuery' value=''>
+			<p>Enter your indoor temperature:</p>
+			<p><input type='text' name='temperatureQuery' value=''></p>
 			<p>
-			<button id='submitButton' onclick='gettingJSON()'>Submit</button>
+			<button id='submitButton'>Submit</button>
 			</p>
-		<!-- </form> -->
+		</form>
 	</body>
 </html>
