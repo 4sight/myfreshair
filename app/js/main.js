@@ -1,6 +1,7 @@
 function gettingJSON(){
-	var location = document.getElementById('locationQuery').value + ', us';
 	var temp;
+	var i;
+	var location = document.getElementById('locationQuery').value + ', us';
 	// if (location.length == 5 && /^[0-9]+$/.test(location)) {
 	// 	console.log('Valid zip code')
 	// }
@@ -11,6 +12,12 @@ function gettingJSON(){
 		console.log(temp);
     });
     $.getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
-    	console.log(JSON.stringify(json));
+    	// for (i = 0; i < JSON.stringify(json.length); )
+    	var forecast = JSON.stringify(json.list);
+    	console.log(Object.keys(forecast).length);
+    	console.log(JSON.stringify(json.list[0].dt));
     })
+    var time = (new Date).getTime();
+    console.log(time);
+
 }
