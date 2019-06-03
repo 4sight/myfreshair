@@ -1,5 +1,6 @@
 function gettingJSON(){
 	var temp;
+    var forecast;
 	var i;
 	var location = document.getElementById('locationQuery').value + ', us';
 	// if (location.length == 5 && /^[0-9]+$/.test(location)) {
@@ -13,11 +14,21 @@ function gettingJSON(){
     });
     $.getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
     	// for (i = 0; i < JSON.stringify(json.length); )
-    	var forecast = JSON.stringify(json.list);
+    	forecast = JSON.stringify(json.list);
     	console.log(Object.keys(forecast).length);
-    	console.log(JSON.stringify(json.list[0].dt));
+    	// console.log(JSON.stringify(json.list[0].main.temp));
     })
+    for (i = 0; i < 99; i++) {
+        if (heat.checked) {
+            console.log(forecast[i].main.temp);
+        } else if (cool.checked) {
+
+        }
+        else {
+            window.alert('Please select one of the two heating or cooling options.')
+        }
+    }
     var time = (new Date).getTime();
-    console.log(time);
+    console.log(time / 1000);
 
 }
