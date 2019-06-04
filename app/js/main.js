@@ -19,7 +19,6 @@ function gettingJSON(){
     $.getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
     	forecast = json.list;
         var forecastID = '';
-    	console.log(Object.keys(forecast).length);
         if (heat.checked) {
             if (desiredTemp === '') {
                 window.alert('Please enter your desired temperature.')
@@ -27,11 +26,32 @@ function gettingJSON(){
                 window.alert('Open your windows now!')
             } else if (temp < desiredTemp) {
                 for (i = 0; forecast[i].main.temp < desiredTemp; i++) {
-                    console.log(i);
-                    console.log(forecast[i].dt);
-                    console.log(forecast[i].main.temp);
-                    // window.alert('Open your windows at');
-                }       
+                    forecastID = i;
+                }
+                var forecastTimeEpoch = forecast[i].dt;
+                var forecastTime = new Date(forecastTimeEpoch);
+                var hours = forecastTime.getHours();
+                var minutes = '0' + forecastTime.getMinutes();
+                var forecastTimeMilitary = hours + ':' + minutes.substr(-2);
+                console.log(forecastTimeMilitary);
+                forecastTimeMilitary = forecastTimeMilitary.split(':');
+                var hours = Number(forecastTimeMilitary[0]);
+                var minutes = Number(forecastTimeMilitary[1]);
+
+                // calculate
+                var forecastTime;
+
+                if (hours > 0 && hours <= 12) {
+                  forecastTime = "" + hours;
+                } else if (hours > 12) {
+                  forecastTime = "" + (hours - 12);
+                } else if (hours == 0) {
+                  forecastTime = "12";
+                }
+                 
+                forecastTime += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+                forecastTime += (hours >= 12) ? "pm" : "am";  // get AM/PM
+                window.alert('Open your windows at ' + forecastTime);
             }
         } else if (cool.checked) {
             if (desiredTemp === '') {
@@ -40,22 +60,36 @@ function gettingJSON(){
                 window.alert('Open your windows now!')
             } else if (temp > desiredTemp) {
                 for (i = 0; forecast[i].main.temp > desiredTemp; i++) {
-                    console.log(i);
-                    console.log(forecast[i].dt);
-                    console.log(forecast[i].main.temp);
-                    console.log(i + 1);
-                    console.log(forecast[i + 1].dt);
-                    console.log(forecast[i + 1].main.temp);
-                    // window.alert('Open your windows at');
                     forecastID = i;
                 }
-                console.log(forecastID);     
+                var forecastTimeEpoch = forecast[i].dt;
+                var forecastTime = new Date(forecastTimeEpoch);
+                var hours = forecastTime.getHours();
+                var minutes = '0' + forecastTime.getMinutes();
+                var forecastTimeMilitary = hours + ':' + minutes.substr(-2);
+                console.log(forecastTimeMilitary);
+                forecastTimeMilitary = forecastTimeMilitary.split(':');
+                var hours = Number(forecastTimeMilitary[0]);
+                var minutes = Number(forecastTimeMilitary[1]);
+
+                // calculate
+                var forecastTime;
+
+                if (hours > 0 && hours <= 12) {
+                  forecastTime = "" + hours;
+                } else if (hours > 12) {
+                  forecastTime = "" + (hours - 12);
+                } else if (hours == 0) {
+                  forecastTime = "12";
+                }
+                 
+                forecastTime += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+                forecastTime += (hours >= 12) ? "pm" : "am";  // get AM/PM
+                window.alert('Open your windows at ' + forecastTime);
             }
         }
         else {
             window.alert('Please select either the heat up or cool down option.')
         }
     })
-    var time = (new Date).getTime();
-    console.log(time / 1000);
 }
