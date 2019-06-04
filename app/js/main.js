@@ -1,6 +1,9 @@
 function gettingJSON(){
 	var temp;
-    var desiredTemp = document.getElementById('desiredTemp').value;
+    var desiredTempF = document.getElementById('desiredTemp').value;
+    console.log(desiredTempF);
+    var desiredTemp = (+desiredTempF + 459.67) * 5 / 9;
+    console.log(desiredTemp);
     var forecast;
 	var i;
 	var location = document.getElementById('location').value + ', us';
@@ -11,7 +14,7 @@ function gettingJSON(){
     $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
         console.log(JSON.stringify(json));
         temp = JSON.stringify(json.main.temp);
-		console.log('The current temperature is ' + temp + '°K');
+		console.log('The current temperature is ' + (9 / 5 * (temp - 273.15) + 32).toFixed(2) + '°F');
     });
     $.getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
     	forecast = json.list;
@@ -55,5 +58,4 @@ function gettingJSON(){
     })
     var time = (new Date).getTime();
     console.log(time / 1000);
-    // (9 / 5 * (JSON.stringify(json.main.temp) - 273.15) + 32).toPrecision(5);
 }
