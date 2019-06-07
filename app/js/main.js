@@ -3,7 +3,6 @@ function gettingJSON(){
     var desiredTempF = document.getElementById('desiredTemp').value;
     console.log(desiredTempF);
     var desiredTemp = (+desiredTempF + 459.67) * 5 / 9;
-    console.log(desiredTemp);
     var forecast;
 	var i;
 	var location = document.getElementById('location').value + ', us';
@@ -18,6 +17,7 @@ function gettingJSON(){
     });
     $.getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
     	forecast = json.list;
+        console.log(forecast.length);
         var forecastID = '';
         if (heat.checked) {
             if (desiredTemp === '') {
@@ -26,7 +26,6 @@ function gettingJSON(){
                 window.alert('Open your windows now!')
             } else if (temp < desiredTemp) {
                 for (i = 0; forecast[i].main.temp < desiredTemp; i++) {
-                    forecastID = i;
                 }
                 var forecastTimeEpoch = forecast[i].dt;
                 var forecastTime = new Date(forecastTimeEpoch);
@@ -59,8 +58,14 @@ function gettingJSON(){
             } else if (temp < desiredTemp) {
                 window.alert('Open your windows now!')
             } else if (temp > desiredTemp) {
-                for (i = 0; forecast[i].main.temp > desiredTemp; i++) {
-                    forecastID = i;
+                for (i = 0; i < forecast.length - 1; i++) {
+                    if (forecast[i].main.temp < desiredTemp) {
+                        return;
+                    }
+                }
+                if (i == forecast.length - 1) {
+                    window.alert('The temperature is not forecast to drop that low.')
+                    return;
                 }
                 var forecastTimeEpoch = forecast[i].dt;
                 var forecastTime = new Date(forecastTimeEpoch);
@@ -85,7 +90,7 @@ function gettingJSON(){
                  
                 forecastTime += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
                 forecastTime += (hours >= 12) ? "pm" : "am";  // get AM/PM
-                window.alert('Open your windows at ' + forecastTime);
+                window.alert('Open your windows at ' + forecastTime + '.');
             }
         }
         else {
