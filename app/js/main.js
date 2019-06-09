@@ -29,32 +29,15 @@ function gettingJSON(){
                     if (forecast[i].main.temp > desiredTemp) {
                         var forecastTimeEpoch = forecast[i].dt;
                         console.log(forecast[i].dt);
-                        var forecastTime = new Date(forecastTimeEpoch);
-                        var day = forecastTime.getDay();
-                        console.log(day);
-                        var hours = forecastTime.getHours();
-                        var minutes = '0' + forecastTime.getMinutes();
-                        var forecastTimeMilitary = hours + ':' + minutes.substr(-2);
-                        console.log(forecastTimeMilitary);
-                        forecastTimeMilitary = forecastTimeMilitary.split(':');
-                        var hours = Number(forecastTimeMilitary[0]);
-                        var minutes = Number(forecastTimeMilitary[1]);
-
-                        // calculate
-                        var forecastTime;
-
-                        if (hours > 0 && hours <= 12) {
-                          forecastTime = "" + hours;
-                        } else if (hours > 12) {
-                          forecastTime = "" + (hours - 12);
-                        } else if (hours == 0) {
-                          forecastTime = "12";
+                        var forecastTime = new Date(0);
+                        forecastTime.setUTCSeconds(forecastTimeEpoch);
+                        var day = moment(forecastTime).format('dddd');
+                        if (day === moment().format('dddd')) {
+                            var day = 'today';
                         }
-                         
-                        forecastTime += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
-                        forecastTime += (hours >= 12) ? "pm" : "am";  // get AM/PM
-                        console.log(forecastTime);
-                        window.alert('Open your windows at ' + forecastTime + ' on ' + day + '.');
+                        var d = moment(forecastTime).format('h:mma');
+                        console.log(day);
+                        window.alert('Open your windows around ' + d + ' on ' + day + '.');
                         return;
                     } else if (i >= forecast.length - 2) {
                         window.alert('The temperature is not forecast to get that high within the next four days.')
@@ -71,32 +54,15 @@ function gettingJSON(){
                     if (forecast[i].main.temp < desiredTemp) {
                         var forecastTimeEpoch = forecast[i].dt;
                         console.log(forecast[i].dt);
-                        var forecastTime = new Date(forecastTimeEpoch);
-                        var day = forecastTime.getDay();
-                        console.log(day);
-                        var hours = forecastTime.getHours();
-                        var minutes = '0' + forecastTime.getMinutes();
-                        var forecastTimeMilitary = hours + ':' + minutes.substr(-2);
-                        console.log(forecastTimeMilitary);
-                        forecastTimeMilitary = forecastTimeMilitary.split(':');
-                        var hours = Number(forecastTimeMilitary[0]);
-                        var minutes = Number(forecastTimeMilitary[1]);
-
-                        // calculate
-                        var forecastTime;
-
-                        if (hours > 0 && hours <= 12) {
-                          forecastTime = "" + hours;
-                        } else if (hours > 12) {
-                          forecastTime = "" + (hours - 12);
-                        } else if (hours == 0) {
-                          forecastTime = "12";
+                        var forecastTime = new Date(0);
+                        forecastTime.setUTCSeconds(forecastTimeEpoch);
+                        var day = moment(forecastTime).format('dddd');
+                        if (day === moment().format('dddd')) {
+                            var day = 'today';
                         }
-                         
-                        forecastTime += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
-                        forecastTime += (hours >= 12) ? "pm" : "am";  // get AM/PM
-                        console.log(forecastTime);
-                        window.alert('Open your windows at ' + forecastTime + ' on ' + day + '.');
+                        var d = moment(forecastTime).format('h:mma');
+                        console.log(day);
+                        window.alert('Open your windows around ' + d + ' on ' + day + '.');
                         return;
                     } else if (i >= forecast.length - 2) {
                         window.alert('The temperature is not forecast to drop that low within the next four days.')

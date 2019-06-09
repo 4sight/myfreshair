@@ -2,13 +2,14 @@
 <html>
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.js"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 		<script type='text/javascript' src='js/main.js'></script>
 		<title>FreshAir</title>
 	</head>
 	<body>
 		<p id='demo'></p>
-		<p>Want to turn off your air conditioning and let in some fresh air? Enter your location and your thermostat's set temperature (your comfortable indoor temperature) and FreshAir will estimate what the best time will be to open your windows based on your local weather forecast.</p>
+		<p>Want to turn off your air conditioning and let in some fresh air? Enter your location and your thermostat's set temperature (the indoor temperature you want) and FreshAir will estimate what the best time will be to open your windows based on your local weather forecast.</p>
 		<p>Enter city or ZIP code in the U.S.:</p>
 		<form action='javascript:gettingJSON();'>
 			<input type='text' id='location' value=''>
