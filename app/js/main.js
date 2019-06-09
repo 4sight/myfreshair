@@ -1,18 +1,21 @@
 function gettingJSON(){
     var temp;
     var desiredTempF = document.getElementById('desiredTemp').value;
-    console.log(desiredTempF);
     var desiredTemp = (+desiredTempF + 459.67) * 5 / 9;
     var forecast;
     var i;
     var location = document.getElementById('location').value + ', us';
-    // if (location.length == 5 && /^[0-9]+$/.test(location)) {
-    //  console.log('Valid zip code')
-    // }
-    // else { console.log('Not a zip code') }
+    if (location === ', us') {
+        window.alert('Please enter a location.')
+    }
+    if (desiredTempF === '') {
+        window.alert('Please enter your desired indoor temperature.')
+    }
     $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
         temp = JSON.stringify(json.main.temp);
         console.log('The current temperature is ' + (9 / 5 * (temp - 273.15) + 32).toFixed(2) + '°F');
+    }).fail(function(jqxhr, textStatus, error) {
+        window.alert('Please enter a different location.');
     });
     $.getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
         forecast = json.list;
@@ -32,12 +35,12 @@ function gettingJSON(){
                         var forecastTime = new Date(0);
                         forecastTime.setUTCSeconds(forecastTimeEpoch);
                         var day = moment(forecastTime).format('dddd');
-                        if (day === moment().format('dddd')) {
-                            var day = 'today';
-                        }
                         var d = moment(forecastTime).format('h:mma');
-                        console.log(day);
-                        window.alert('Open your windows around ' + d + ' on ' + day + '.');
+                        if (day === moment().format('dddd')) {
+                            window.alert('Open your windows around ' + d + ' today.');
+                        } else {
+                            window.alert('Open your windows around ' + d + ' on ' + day + '.');
+                        }
                         return;
                     } else if (i >= forecast.length - 2) {
                         window.alert('The temperature is not forecast to get that high within the next four days.')
@@ -53,16 +56,15 @@ function gettingJSON(){
                 for (i = 0; i < forecast.length - 1; i++) {
                     if (forecast[i].main.temp < desiredTemp) {
                         var forecastTimeEpoch = forecast[i].dt;
-                        console.log(forecast[i].dt);
                         var forecastTime = new Date(0);
                         forecastTime.setUTCSeconds(forecastTimeEpoch);
                         var day = moment(forecastTime).format('dddd');
-                        if (day === moment().format('dddd')) {
-                            var day = 'today';
-                        }
                         var d = moment(forecastTime).format('h:mma');
-                        console.log(day);
-                        window.alert('Open your windows around ' + d + ' on ' + day + '.');
+                        if (day === moment().format('dddd')) {
+                            window.alert('Open your windows around ' + d + ' today.');
+                        } else {
+                           window.alert('Open your windows around ' + d + ' on ' + day + '.');
+                        }
                         return;
                     } else if (i >= forecast.length - 2) {
                         window.alert('The temperature is not forecast to drop that low within the next four days.')
