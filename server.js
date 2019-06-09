@@ -11,7 +11,3 @@ app.listen(process.env.PORT || 4000, function(){
 });
 
 app.use(express.static('js'));
-
-server.get('*', (req, res) => {
-    return handle(req, res)
-});
