@@ -1,8 +1,5 @@
 {
   "start": "node server.js",
-  "scripts": {
-    "start": "app/index.html"
-  },
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "del": "^3.0.0",
