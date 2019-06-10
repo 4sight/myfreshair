@@ -11,13 +11,13 @@ function gettingJSON(){
     if (desiredTempF === '') {
         window.alert('Please enter your desired indoor temperature.')
     }
-    $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
+    $.getJSON('https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
         temp = JSON.stringify(json.main.temp);
         console.log('The current temperature is ' + (9 / 5 * (temp - 273.15) + 32).toFixed(2) + '°F');
     }).fail(function(jqxhr, textStatus, error) {
         window.alert('Please enter a different location.');
     });
-    $.getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
+    $.getJSON('https://api.openweathermap.org/data/2.5/forecast?q=' + location + '&appid=01205a36e129751e14469a7f443b8441',function(json){
         forecast = json.list;
         console.log('The first forecast data point is for ' + (9 / 5 * (forecast[0].main.temp - 273.15) + 32).toFixed(2) + '°F');
         var forecastID = '';
