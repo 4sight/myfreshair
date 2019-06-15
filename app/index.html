@@ -19,9 +19,11 @@
 			<input type='text' id='location' value=''>
 			<p>Enter your desired indoor temperature (in °F):</p>
 			<p><input type='text' id='desiredTemp' value=''></p>
-			<p>Are you trying to heat up your home or cool it down?</p>
-			<input type='radio' required='required' id='heat' name='direction'>Heat it up<br>
-			<input type='radio' required='required' id='cool' name='direction'>Cool it down<br><br>
+			<div class='radioboxes'>
+				<p>Are you trying to heat up your home or cool it down?</p>
+				<input type='radio' required='required' id='heat' name='direction' class='radio' checked><label for='heat'>Heat it up</label><br>
+				<input type='radio' required='required' id='cool' name='direction' class='radio'><label for='cool'>Cool it down</label><br><br>
+			</div>
 			<p>
 			<button id='submitButton'>Submit</button>
 			</p>
