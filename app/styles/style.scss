@@ -1,15 +1,24 @@
 body {
 	background-image: url('../images/clouds.jpg');
+	color: #333333;
+	font-family: 'Proxima Nova Soft', 'Helvetica Neue', sans-serif;
 }
 h1 {
 	text-align: center;
 }
-input[type='radio']:checked + label {
-	height: 25px;
-	font-size: 30px;
+input[type='radio'] {
+	transform: scale(2);
 }
-
-input[type='radio']:unchecked + label {
-	height: 25px;
-	font-size: 30px;
+input[type='radio'] + label {
+	padding-left: 10px;
+	line-height: 30px;
+}
+#location {
+	height: 40px;
+}
+#desiredTemp {
+	height: 40px
+}
+#submitButton {
+	width: 80px;
 }
