@@ -20,4 +20,5 @@ input[type='radio'] + label {
   height: 40px; }
 
 #submitButton {
-  width: 80px; }
+  width: 80px;
+  height: 40px; }
