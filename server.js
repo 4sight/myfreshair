@@ -10,4 +10,4 @@ app.listen(process.env.PORT || 4000, function(){
     console.log('Your node js server is running');
 });
 
-app.use(express.static(__dirname + "/public/"));
+app.use(express.static('app'));
