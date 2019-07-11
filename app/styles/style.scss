@@ -14,11 +14,19 @@ input[type='radio'] + label {
 	line-height: 46px;
 	font-size: 30px;
 }
-#location {
-	height: 40px;
-}
 #desiredTemp {
-	height: 40px
+	height: 46px;
+	width: 100%;
+	line-height: 50px;
+    font: inherit;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    padding-right: 35px;
+    padding-left: 15px;
+    height: 50px;
 }
 #submitButton {
 	width: 80px;
